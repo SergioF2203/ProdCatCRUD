@@ -1,0 +1,63 @@
+﻿
+@using ProductCategoryCRUD.Helpers
+@model ProductCategoryCRUD.Models.IndexViewModel
+
+@{
+    ViewBag.Title = "Products";
+}
+
+
+<div style="margin-top: 10px">
+
+    <div class="row" style="margin: 10px 10px; vertical-align: center">
+        <h1 style="margin-top: 7px; vertical-align: middle; display: table-cell">Products</h1>
+        <a href="/Product/Add"><input type="button" class="btn btn-primary" style="margin-left: 30px" value="Add" /></a>
+
+        <form method="get" style="margin-left:2px">
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                <button type="button" class="btn btn-primary">Category</button>
+                <div class="btn-group" role="group">
+                    <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 48px, 0px); top: 0px; left: 0px; will-change: transform;">
+                        @foreach (var item in ViewBag.Categories)
+                        {
+                            <div class="dropdown-item"><input type="submit" style="width:100%" name="categoryName" class="btn btn-secondary" value="@item.Name" /></div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="col-3">
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="text-align:center" scope="col">Product</th>
+                <th style="text-align:center" scope="col">Price</th>
+                <th style="text-align:center" scope="col">Category</th>
+                <th style="text-align:center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Products)
+            {
+                <tr>
+                    <th style="vertical-align:middle" scope="row">@item.Name</th>
+                    <td style="vertical-align:middle">@item.Price</td>
+                    <td style="vertical-align:middle">@item.Category.Name</td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="/Product/Edit/@item.ProductID"><input type="button" class="btn btn-secondary" value="Edit" /></a>
+                            <a href="/Product/Delete/@item.ProductID"><input type="button" class="btn btn-danger" value="Delete" /></a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { pageNum = x }))
+</div>

@@ -1,0 +1,62 @@
+﻿
+@model ProductCategoryCRUD.Models.RegisterModel
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Register</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        <h4>Register a New User</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="col-md-5">
+            Name
+            <div>
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model=>model.Name, "", new { @class = "text-danger"})
+            </div>
+        </div>
+
+
+        <div class="col-md-5">
+            Email
+            <div>
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="col-md-5">
+            Password
+            <div>
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            Confirm Password
+            <div>
+                @Html.EditorFor(model => model.PasswordConfirm, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PasswordConfirm, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div style="margin-top: 5px">
+            <div>
+                <input type="submit" value="Register" class="btn btn-default" /> |
+                <a href="/Home/Index"><input type="button" value="cancel" class="btn btn-default" /></a>
+            </div>
+        </div>
+    </div>
+}

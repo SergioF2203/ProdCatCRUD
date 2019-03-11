@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        <ul class="nav navbar-nav navbar-right" style="display: table">
+            <li class="nav-item" style="display:table-cell; vertical-align:middle">
+                Hello, @User.Identity.Name!
+                @*<a class="nav-link" href="/Account/Register">Register</a>*@
+            </li>
+            <li>
+                <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">log out</a>
+            </li>
+
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item">
+            <a class="nav-link" href="/Account/Register">Register</a>
+        </li>
+        <li>
+            <a class="nav-link" href="/Account/Login">login in</a>
+        </li>
+    </ul>
+}
+

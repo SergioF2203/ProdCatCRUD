@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<ProductCategoryCRUD.Models.Category>
+@{
+    ViewBag.Title = "Categories";
+}
+
+<div style="margin-top: 10px">
+
+    <div class="row" style="margin: 10px 10px; vertical-align: center">
+        <h1 style="margin-top: 7px; vertical-align: middle; display: table-cell">Categories</h1>
+        <a href="/Category/Add"><input type="button" class="btn btn-primary" style="margin-left: 30px" value="Add" /></a>
+    </div>
+
+</div>
+<div class="col-3">
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="text-align:center" scope="col">Name</th>
+                <th style="text-align:center" scope="col">About</th>
+                <th style="text-align:center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.Categories)
+            {
+                <tr>
+                    <th style="vertical-align:middle" scope="row">@item.Name</th>
+                    <td style="vertical-align:middle"></td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="/Category/Edit/@item.CategoryId"><input type="button" class="btn btn-secondary" value="Edit" /></a>
+                            <a href="/Category/Delete/@item.CategoryId"><input type="button" class="btn btn-danger" value="Delete" /></a>
+                        </div>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>
