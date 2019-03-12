@@ -11,6 +11,13 @@
     };
 }
 
+<script>
+    function refresh() {
+        console.log('its work');
+        $(".dropdown-menu").removeClass("show");
+    }
+</script>
+
 
 <div style="margin-top: 10px">
 
@@ -18,7 +25,7 @@
         <h1 style="margin-top: 7px; vertical-align: middle; display: table-cell">Products</h1>
         <a href="/Product/Add"><input type="button" class="btn btn-primary" style="margin-left: 30px" value="Add" /></a>
 
-        @using (Ajax.BeginForm("GetData", ajaxOptions))
+        @using (Ajax.BeginForm("GetData",ajaxOptions))
         {
             <div class="btn-group" role="group" aria-label="Button group with nested dropdown" style="margin-left:2px">
                 <button type="button" class="btn btn-primary">Category</button>
@@ -27,7 +34,7 @@
                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 48px, 0px); top: 0px; left: 0px; will-change: transform;">
                         @foreach (var item in ViewBag.Categories)
                         {
-                            <div class="dropdown-item"><input type="submit" style="width:100%" name="categoryName" class="btn btn-secondary" value="@item.Name" /></div>
+                            <div class="dropdown-item"><input type="submit" style="width:100%" name="categoryName" class="btn btn-secondary" value="@item.Name" onclick="refresh()"/></div>
                         }
                     </div>
                 </div>
