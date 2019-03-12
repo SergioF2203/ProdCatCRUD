@@ -14,27 +14,30 @@ namespace ProductCategoryCRUD.Controllers
         ShopContext shopContext = new ShopContext();
 
 
-        // GET: Product
+        public ActionResult Index()
+        {
+            List<Category> categories = shopContext.Categories.ToList();
+            categories.Insert(0, new Category { Name = "All", CategoryId = 0 });
+            ViewBag.Categories = categories;
 
-        public ActionResult Index(string categoryName, int pageNum = 1)
+            return View();
+        }
+
+        public PartialViewResult GetData(string categoryName, int pageNum = 1)
         {
             int pageSize = 3;
             IEnumerable<Product> products = shopContext.Products.Include(p => p.Category);
-            List<Category> categories = shopContext.Categories.ToList();
 
             if (categoryName != null && categoryName != "All")
             {
                 products = products.Where(p => p.Category.Name == categoryName);
             }
-            categories.Insert(0, new Category { Name = "All", CategoryId = 0 });
-
 
             IEnumerable<Product> productsPerPage = products.Skip((pageNum - 1) * pageSize).Take(pageSize);
             PageInfo pageInfo = new PageInfo { PageNumber = pageNum, PageSize = pageSize, TotalItems = products.ToList().Count };
             IndexViewModel indexViewModel = new IndexViewModel { PageInfo = pageInfo, Products = productsPerPage };
-            ViewBag.Categories = categories;
             
-            return View(indexViewModel);
+            return PartialView("_PartialViewGetData",indexViewModel);
         }
 
 

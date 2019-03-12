@@ -2,8 +2,13 @@
 @using ProductCategoryCRUD.Helpers
 @model ProductCategoryCRUD.Models.IndexViewModel
 
+
 @{
     ViewBag.Title = "Products";
+    AjaxOptions ajaxOptions = new AjaxOptions
+    {
+        UpdateTargetId = "results"
+    };
 }
 
 
@@ -13,8 +18,9 @@
         <h1 style="margin-top: 7px; vertical-align: middle; display: table-cell">Products</h1>
         <a href="/Product/Add"><input type="button" class="btn btn-primary" style="margin-left: 30px" value="Add" /></a>
 
-        <form method="get" style="margin-left:2px">
-            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+        @using (Ajax.BeginForm("GetData", ajaxOptions))
+        {
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown" style="margin-left:2px">
                 <button type="button" class="btn btn-primary">Category</button>
                 <div class="btn-group" role="group">
                     <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
@@ -26,38 +32,9 @@
                     </div>
                 </div>
             </div>
-        </form>
+        }
     </div>
 </div>
 
-<div class="col-3">
-    <table class="table">
-        <thead>
-            <tr>
-                <th style="text-align:center" scope="col">Product</th>
-                <th style="text-align:center" scope="col">Price</th>
-                <th style="text-align:center" scope="col">Category</th>
-                <th style="text-align:center">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Products)
-            {
-                <tr>
-                    <th style="vertical-align:middle" scope="row">@item.Name</th>
-                    <td style="vertical-align:middle">@item.Price</td>
-                    <td style="vertical-align:middle">@item.Category.Name</td>
-                    <td>
-                        <div class="btn-group">
-                            <a href="/Product/Edit/@item.ProductID"><input type="button" class="btn btn-secondary" value="Edit" /></a>
-                            <a href="/Product/Delete/@item.ProductID"><input type="button" class="btn btn-danger" value="Delete" /></a>
-                        </div>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
-<div>
-    @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { pageNum = x }))
-</div>
+<div id="results" class="col-3"> @Html.Action("GetData")</div>
+

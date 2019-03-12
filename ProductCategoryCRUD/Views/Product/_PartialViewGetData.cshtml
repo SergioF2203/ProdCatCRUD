@@ -1,0 +1,34 @@
+﻿@using ProductCategoryCRUD.Helpers
+@model ProductCategoryCRUD.Models.IndexViewModel
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="text-align:center" scope="col">Product</th>
+                <th style="text-align:center" scope="col">Price</th>
+                <th style="text-align:center" scope="col">Category</th>
+                <th style="text-align:center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Products)
+            {
+                <tr>
+                    <th style="vertical-align:middle" scope="row">@item.Name</th>
+                    <td style="vertical-align:middle">@item.Price</td>
+                    <td style="vertical-align:middle">@item.Category.Name</td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="/Product/Edit/@item.ProductID"><input type="button" class="btn btn-secondary" value="Edit" /></a>
+                            <a href="/Product/Delete/@item.ProductID"><input type="button" class="btn btn-danger" value="Delete" /></a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+<div style="text-align:center">
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { pageNum = x }))
+</div>
+
