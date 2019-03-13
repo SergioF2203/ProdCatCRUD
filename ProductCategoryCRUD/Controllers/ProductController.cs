@@ -110,6 +110,16 @@ namespace ProductCategoryCRUD.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Details(int id)
+        {
+            Product product = shopContext.Products.Find(id);
+            if (product != null)
+            {
+                return PartialView(product);
+            }
+            return View("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             shopContext.Dispose();
