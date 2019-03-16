@@ -55,7 +55,7 @@ namespace ProductCategoryCRUD.Controllers
                 SelectList selectListItems = new SelectList(shopContext.Categories, "CategoryId", "Name");
                 ViewBag.categoryItems = selectListItems;
 
-                return View(product);
+                return PartialView(product);
             }
 
             return HttpNotFound();
@@ -95,7 +95,7 @@ namespace ProductCategoryCRUD.Controllers
             {
                 return HttpNotFound();
             }
-            return View(product);
+            return PartialView(product);
         }
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int? id)
@@ -112,7 +112,8 @@ namespace ProductCategoryCRUD.Controllers
 
         public ActionResult Details(int id)
         {
-            Product product = shopContext.Products.Find(id);
+            //Product product = shopContext.Products.Find(id);
+            Product product = shopContext.Products.Include(i => i.Category).FirstOrDefault(x => x.ProductID == id);
             if (product != null)
             {
                 return PartialView(product);

@@ -49,7 +49,6 @@ D:\RepoVS\ProdCatCRUD\ProductCategoryCRUD\bin\System.Web.WebPages.Deployment.xml
 D:\RepoVS\ProdCatCRUD\ProductCategoryCRUD\bin\System.Web.WebPages.Razor.xml
 D:\RepoVS\ProdCatCRUD\ProductCategoryCRUD\bin\System.Web.Optimization.xml
 D:\RepoVS\ProdCatCRUD\ProductCategoryCRUD\bin\Antlr3.Runtime.pdb
-D:\RepoVS\ProdCatCRUD\ProductCategoryCRUD\obj\Debug\ProductCategoryCRUD.csprojAssemblyReference.cache
 D:\RepoVS\ProdCatCRUD\ProductCategoryCRUD\obj\Debug\ProductCategoryCRUD.csproj.CoreCompileInputs.cache
 D:\RepoVS\ProdCatCRUD\ProductCategoryCRUD\obj\Debug\ProductCategoryCRUD.csproj.CopyComplete
 D:\RepoVS\ProdCatCRUD\ProductCategoryCRUD\obj\Debug\ProductCategoryCRUD.dll

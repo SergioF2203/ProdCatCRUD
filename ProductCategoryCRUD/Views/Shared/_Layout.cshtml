@@ -7,6 +7,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
             integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
             crossorigin="anonymous"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
+    @Scripts.Render("~/scripts/jquery-ui-1.12.1.js")
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
     <title>@ViewBag.Title - Shop</title>
 </head>
 <body>
@@ -32,19 +38,115 @@
         </div>
     </nav>
     <div class="container body-content">
+
         @RenderBody()
+
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Funtikoff's Shop</p>
         </footer>
     </div>
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")*@
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
-    @*<script src="@Url.Content("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-        crossorigin="anonymous"></script>")"*@
     @RenderSection("scripts", required: false)
+
+    <script>
+        function refresh() {
+            $(".dropdown-menu").removeClass("show");
+        };
+
+        $(function () {
+            $.ajaxSetup({ cache: false });
+
+            $(".viewDialog").on("click", function (e) {
+                e.preventDefault();
+
+                //let firstDiv = $("<div>")
+                //    .addClass("modal")
+                //    .attr("id", "modal_dialog");
+                //let secDiv = $("<div>")
+                //    .addClass("modal-dialog")
+                //    .attr("role", "document").appendTo(firstDiv);
+                //let thDiv = $("<div>")
+                //    .addClass("modal-header").appendTo(secDiv);
+                //$("<h5>").addClass("modal-title").text("testTitle").appendTo(thDiv);
+                //$("<button>")
+                //    .attr("type", "button")
+                //    .addClass("close")
+                //    .attr("data-dismiss", "modal")
+                //    .attr("aria-label", "close")
+                //    .append("<span aria-hidden=\"true\">&times;</span>")
+                //    .appendTo(thDiv);
+
+                //firstDiv.appendTo("body").dialog().load(this.href);
+                //$("#modal_dialog").dialog("open");
+                //    .dialog({
+                //    //title: $(this).attr("data-dialog-title"),
+                //    //close: function () { $(this).remove() },
+                //    modal: true
+                //})
+                //    .load(this.href);
+
+                //$("<div>")
+                //    .appendTo("body")
+                //    .dialog({
+                //        title: $(this).attr("data-dialog-title"),
+                //        close: function () { $(this).remove() },
+                //        modal: true,
+                //        width: 500,
+                //        hide: {
+                //            effect: "explode",
+                //            duration: 1000
+                //        }
+
+                //    })
+                //    .load(this.href);
+
+
+                $("<div>")
+                    .addClass("dialog")
+                    .appendTo("body")
+                    .dialog({
+                        title: $(this).attr("data-dialog-title"),
+                        close: function () { $(this).remove() },
+                        modal: true,
+                        width: 500,
+                        hide: {
+                            effect: "explode",
+                            duration: 1000
+                        }
+                        
+                    })
+                    .load(this.href);
+            })
+        });
+    </script>
+
+    @*<div class="modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+
+
+
+
 </body>
 </html> 

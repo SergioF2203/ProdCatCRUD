@@ -19,8 +19,9 @@
                     <td style="vertical-align:middle">@item.Category.Name</td>
                     <td>
                         <div class="btn-group">
-                            <a href="/Product/Edit/@item.ProductID"><input type="button" class="btn btn-secondary" value="Edit" /></a>
-                            <a href="/Product/Delete/@item.ProductID"><input type="button" class="btn btn-danger" value="Delete" /></a>
+                            <a href="/Product/Details/@item.ProductID" class="viewDialog" data-dialog-title="DETAILS"><input type="button" class="btn btn-info" value="Details" /></a>
+                            <a href="/Product/Edit/@item.ProductID" class="viewDialog" data-dialog-title="EDIT"><input type="button" class="btn btn-secondary" value="Edit" /></a>
+                            <a href="/Product/Delete/@item.ProductID" class="viewDialog" data-dialog-title="DELETE"><input type="button" class="btn btn-danger" value="Delete" /></a>
                         </div>
                     </td>
                 </tr>
